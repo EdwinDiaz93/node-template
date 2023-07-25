@@ -1,13 +1,13 @@
 import { Table, Model, Column, DataType, BelongsToMany } from 'sequelize-typescript';
 
-
-import Rol from './rol.model';
+import User from './user.model';
 import UserRol from './user-rol.model';
+
 @Table({
-    modelName: 'User',
-    tableName: 'users'
+    modelName: 'Rol',
+    tableName: 'roles'
 })
-class User extends Model {
+class Rol extends Model {
     @Column({
         primaryKey: true,
         autoIncrement: true,
@@ -19,12 +19,9 @@ class User extends Model {
     @Column(DataType.STRING)
     name: string;
 
-    @Column(DataType.STRING)
-    email: string;
-
-    @BelongsToMany(() => Rol, () => UserRol)
-    roles: Rol[]
+    @BelongsToMany(() => User, () => UserRol)
+    users: User[]
 }
 
-export default User;
+export default Rol;
 

@@ -9,9 +9,10 @@ const db = new Sequelize({
     host: config.dbHost,
     port: config.dbPort,
     define: {
-        timestamps: true,        
-        paranoid:true,
-    },    
+        timestamps: true,
+        paranoid: true,
+        underscored: true,
+    },
 });
 
 export default db;
