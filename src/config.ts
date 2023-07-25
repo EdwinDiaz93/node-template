@@ -21,6 +21,8 @@ const dbPass = String(process.env.DB_PASSWORD) || 'postgres';
 const dbName = String(process.env.DB_NAME) || 'postgres';
 const dbPort = Number(process.env.DB_PORT) || 5432;
 const dbHost = String(process.env.DB_HOST) || 'localhost';
+const jwtSecret = process.env.JWT_SECRET;
+
 const dbDialect = dialect.postgres;
 
 export const config = {
@@ -31,5 +33,6 @@ export const config = {
     dbPort,
     dbHost,
     dbDialect,
+    jwtSecret,
 }
 

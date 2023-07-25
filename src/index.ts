@@ -14,8 +14,8 @@ app.use('/api/v1', mainRouter);
 
 app.listen(config.port, async () => {
     try {
-        await DB.sync();
-        // await DB.sync({ force: true });
+        // await DB.sync();
+        await DB.sync({ force: true });
         // console.log(`Express is listening at http://localhost:${config.port}`);
     } catch (error) {
         console.log('internal server error');

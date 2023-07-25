@@ -19,8 +19,14 @@ class User extends Model {
     @Column(DataType.STRING)
     name: string;
 
-    @Column(DataType.STRING)
+    @Column({
+        type: DataType.STRING,
+        unique: true,
+    })
     email: string;
+
+    @Column(DataType.STRING)
+    password: string;
 
     @BelongsToMany(() => Rol, () => UserRol)
     roles: Rol[]
