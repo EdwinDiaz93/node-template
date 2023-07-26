@@ -11,7 +11,6 @@ export const userSeeder = async () => {
         //@ts-ignore
         user.setRoles(1);
     });
-    console.log(userData.length);
     User.bulkCreate([
         ...userData
     ]).then((users) => {
