@@ -10,8 +10,9 @@ import UserRol from './user-rol.model';
 class User extends Model {
     @Column({
         primaryKey: true,
-        autoIncrement: true,
-        type: DataType.BIGINT
+        allowNull: false,
+        type: DataType.UUID,
+        defaultValue: DataType.UUIDV4,
     })
     id: number;
 

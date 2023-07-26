@@ -19,7 +19,11 @@ class AuthController {
 
             if (!validPassword) return res.status(400).json({ msg: 'Invalid credentials' });
 
-            const token = await sign({ id: user.id, name: user.name, email: user.email });
+            // @ts-ignore
+            const userRoles = await user.getRoles();
+            const roles = userRoles.length && userRoles.map(rol => ({ id: rol.id, name: rol.name }));
+
+            const token = await sign({ id: user.id, name: user.name, email: user.email, roles });
 
             return res.status(200).json({
                 id: user.id,
@@ -49,19 +53,15 @@ class AuthController {
             if (userDb) return res.status(400).json({ msg: `email ${email} already taken` });
 
             // create a user
-            const user = await User.create({
+            await User.create({
                 name,
                 email,
                 password: bcryptjs.hashSync(password, bcryptjs.genSaltSync(10)),
             })
 
-            const token = await sign({ id: user.id, name: user.name, email: user.email });
-
             return res.status(200).json({
-                id: user.id,
-                name: user.name,
-                email: user.email,
-                token
+                ok:true,
+                msg:'User registered'
             });
 
         } catch (error) {

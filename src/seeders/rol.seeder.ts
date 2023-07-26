@@ -1,4 +1,8 @@
+import Rol from "../models/rol.model"
 
 export const rolSeeder = async () => {
-    console.log('rol seed');
+    await Rol.bulkCreate([
+        { name: 'ADMIN' },
+        { name: 'USER' },
+    ]);
 }
